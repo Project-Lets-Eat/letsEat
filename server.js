@@ -45,19 +45,13 @@ function handleLocation (req, res){
     .then(cityStuff => {
         const cityData = cityStuff.body.location_suggestions[0];
         console.log(cityStuff.body);
-<<<<<<< HEAD
-        let sortCity = cityData.map(cityObj => {
-            const createCity = new Location(cityObj);
-            return createCity;
-=======
         //let sortCity = cityData.map (cityObj => {
            const createCity = new Location(cityData);
           //  return createCity;
 
           // make request to geocode api
           
->>>>>>> 91b89eb4b59d9a42cd5c836704782940ca3afc19
-        })
+       // })
         res.render('../views/results', {cityInstance : sortCity});
     })
     .catch( error => {
@@ -79,7 +73,6 @@ function RestaurantDetail(data) {
 
 app.get('/geocode', searchGeoCode)
 
-<<<<<<< HEAD
 function searchGeoCode(req, res) {
     const latitude = request.query.latitude;
     const longitude = request.query.longitude;
@@ -102,50 +95,8 @@ function searchGeoCode(req, res) {
 }
 
 function Cuisines(data) {
-=======
-
-
-
-
-function Cuisisnes(data) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function Cuisines(data) {
-4fe09e6cde55ae218fada631242f7b154216c420
->>>>>>> 91b89eb4b59d9a42cd5c836704782940ca3afc19
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
-
-    this.cuisine_id = data.cuisine.cuisine_id;
-    this.cuisine_name = data.cuisine.cuisine_name; 
 
 }
 
@@ -165,12 +116,6 @@ function searchCuisines(request, response) {
     })
     .catch(err => console.error(err));
 }
-
-
-
-
-
-
 
 
 client.connect() 
