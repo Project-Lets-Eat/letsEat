@@ -8,26 +8,23 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const pg = require('pg');
 const ZOMATOAPI = process.env.ZOMATO_API_KEY;
-const IPSTACKAPI = process.env.IPSTACK_API_KEY;
+const cors = require('cors');
 
-//const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 app.set('view engine', 'ejs'); 
 
 app.get('/', (request, response) => {
     response.send('my homepage');
 });
 
-app.get('/test/route', (request, response) => {
-    response.json({ location: '',  });
-});
 
 // http://localhost:3001/location?
-app.get('/location', handleLocation);
+app.post('/location', handleLocation);
 
-
+// the table should include the descriptions users want to favorite.. so city-name, restaurant, reviews, etc.
 function Location(data) {
     this.latitude = data.latitude;
     this.longitude = data.longitude;
@@ -36,12 +33,63 @@ function Location(data) {
     this.entity_id = data.entity_id;
 }
 
+function handleLocation (req, res){
+    const cityname = req.body.city_name;
+    const url = `https://developers.zomato.com/api/v2.1/locations?query=${cityname}`;
+
+    superagent.get(url)
+    .set('user-key', ZOMATOAPI)
+    .then(cityStuff => {
+        const cityData = cityStuff.body.location_suggestions;
+        console.log(cityStuff.body);
+        let sortCity = cityData.map (cityObj => {
+            const createCity = new Location(cityObj);
+            return createCity;
+        })
+        res.render('../views/results', {cityInstance : sortCity});
+    })
+    .catch( error => {
+        console.error('connection error', error);
+    })
+}
 
 
 
 
 
+
+<<<<<<< HEAD
 function Cuisisnes(data) {
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Cuisines(data) {
+>>>>>>> 4fe09e6cde55ae218fada631242f7b154216c420
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
 }
@@ -74,3 +122,4 @@ app.listen(PORT, () => {
 .catch( error => {
     console.error('connection error', error);
 }) 
+
