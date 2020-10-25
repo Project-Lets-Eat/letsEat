@@ -8,5 +8,5 @@ entity_id VARCHAR (255),
 latitude DECIMAL,
 longitude DECIMAL,
 name VARCHAR (255),
-price_range NUMERIC
+ NUMERIC
 );
