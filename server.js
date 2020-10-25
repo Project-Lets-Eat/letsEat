@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3001;
 const pg = require('pg');
 const ZOMATOAPI = process.env.ZOMATO_API_KEY;
 const cors = require('cors');
+const { response } = require('express');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.static('./public'));
@@ -42,7 +43,7 @@ function handleLocation (req, res){
     .then(cityStuff => {
         const cityData = cityStuff.body.location_suggestions;
         console.log(cityStuff.body);
-        let sortCity = cityData.map (cityObj => {
+        let sortCity = cityData.map(cityObj => {
             const createCity = new Location(cityObj);
             return createCity;
         })
@@ -53,43 +54,42 @@ function handleLocation (req, res){
     })
 }
 
+// purpose, what/how invoked, what returned
+// arguments (#): 2 lat long, 1 popularity 
+// argument types: numbers, 
+// return: data: popularity ratings location price range, photo
+function RestaurantDetail(data) {
+    this.phots_url = data.restaurant.photos_url;
+    this.currency = data.nearby_restaurants.currency;
+    this.rating_text = data.user_rating.rating_text;
+    this.address = data.restaurant.location.address;
+    //this.popularity = data.popularity.popularity;
+}
 
+app.get('/geocode', searchGeoCode)
 
-
-
-
-<<<<<<< HEAD
-function Cuisisnes(data) {
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function searchGeoCode(req, res) {
+    const latitude = request.query.latitude;
+    const longitude = request.query.longitude;
+    const url = `https://developers.zomato.com/api/v2.1/geocode?lat=${latitude}&long=${longitude}`
+    
+    superagent.get(url)
+        .set('user-key', ZOMATOAPI)
+        .then(response => {
+            const geoStuff = response.nearby_restaurants;
+            console.log(response.nearby_restaurants);
+            let geoSuggestions = geoStuff.map(restaurantArr => {
+                const sortRest = new RestaurantDetail(restaurantArr);
+                return sortRest;
+            })
+            res.render('../views/results', {  popularDetails: geoSuggestions });
+        })
+        .catch(error => {
+            console.error('connection error', error);
+        })
+}
 
 function Cuisines(data) {
->>>>>>> 4fe09e6cde55ae218fada631242f7b154216c420
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
 }
