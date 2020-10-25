@@ -41,33 +41,6 @@ function Location(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function Cuisisnes(data) {
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
