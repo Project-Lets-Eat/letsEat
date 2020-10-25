@@ -68,7 +68,8 @@ function RestaurantDetail(data) {
     this.currency = data.nearby_restaurants.currency;
     this.rating_text = data.user_rating.rating_text;
     this.address = data.restaurant.location.address;
-    //this.popularity = data.popularity.popularity;
+    this.popularity = data.popularity.popularity;
+    this.cuisines = data.nearby_restaurants.cuisines;
 }
 
 app.get('/geocode', searchGeoCode)
@@ -93,6 +94,7 @@ function searchGeoCode(req, res) {
             console.error('connection error', error);
         })
 }
+
 
 function Cuisines(data) {
     this.cuisine_id = data.cuisine_id;
