@@ -37,6 +37,60 @@ function Location(data) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Cuisisnes(data) {
+    this.cuisine_id = data.cuisine_id;
+    this.cuisine_name = data.cuisine_name; 
+}
+
+app.get('/cuisine', searchCuisines)
+function searchCuisines(request, response) {
+    const city_id = request.query.city_id;
+    const lat = request.query.latitude;
+    const lon = request.query.longitude;
+    const url = `http://developers.zomato.com/api/v2.1/cuisines?city_id=/location`;
+
+    superagent.get(url)
+    .then(result => {
+        response.render('views/results', { cuisineList: data.rows})
+    })
+    .catch(err => console.error(err));
+}
+
+
+
+
+
+
 client.connect() 
 .then(() => { 
 app.listen(PORT, () => {
