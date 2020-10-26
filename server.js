@@ -14,16 +14,26 @@ app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); 
-//app.get(route, fcn);
-//app.post('/results', fcn);
+
+app.get('/', (request, response) => {
+    response.send('my homepage');
+});
+
+app.get('/test/route', (request, response) => {
+    response.json({ location: '',  });
+});
+
+// http://localhost:3001/location?
+app.get('/location', handleLocation);
 
 
-
-
-
-
-
-
+function Location(data) {
+    this.latitude = data.latitude;
+    this.longitude = data.longitude;
+    this.city_name = data.city_name;
+    this.city_id = data.city_id;
+    this.entity_id = data.entity_id;
+}
 
 
 
