@@ -8,14 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const pg = require('pg');
 const ZOMATOAPI = process.env.ZOMATO_API_KEY;
-const IPSTACKAPI = process.env.IPSTACK_API_KEY;
 
-//const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); 
-
+//app.get(route, fcn);
+//app.post('/results', fcn);
 
 
 
@@ -36,3 +36,4 @@ app.listen(PORT, () => {
 .catch( error => {
     console.error('connection error', error);
 }) 
+
