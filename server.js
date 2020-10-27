@@ -41,13 +41,8 @@ function restaurantDetail(data) {
     this.currency = data.restaurant.currency;
     this.rating_text = data.restaurant.user_rating.rating_text;
     this.address = data.restaurant.location.address;
-<<<<<<< HEAD
-    this.popularity = data.popularity.popularity;
-    this.cuisines = data.nearby_restaurants.cuisines;
-=======
     this.cuisine = data.restaurant.cuisines;
     this.average_cost_for_two = data.restaurant.average_cost_for_two;
->>>>>>> 371a591da657c2802f484e69af01e81cf14f7baa
 }
 
 function handleLocation(req, res) {
@@ -88,11 +83,6 @@ function handleLocation(req, res) {
         })
 }
 
-<<<<<<< HEAD
-
-=======
-/*
->>>>>>> 371a591da657c2802f484e69af01e81cf14f7baa
 function Cuisines(data) {
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
@@ -115,7 +105,7 @@ function searchCuisines(request, response) {
     })
     .catch(err => console.error(err));
 }
-*/
+
 
 client.connect()
     .then(() => {
