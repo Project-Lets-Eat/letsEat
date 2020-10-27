@@ -18,10 +18,10 @@ app.use(cors());
 app.set('view engine', 'ejs');
 
 app.get('/', (request, response) => {
-    response.send('my homepage');
+    response.render('index');
 });
 
-app.get('/location', handleLocation);
+app.post('/location', handleLocation);
 // the table should include the descriptions users want to favorite.. so city-name, restaurant, reviews, etc.
 function Location(data) {
     this.latitude = data.latitude;
@@ -46,7 +46,7 @@ function restaurantDetail(data) {
 }
 
 function handleLocation(req, res) {
-    const cityname = req.query.city_name;
+    const cityname = req.body.city_name;
     const url = `https://developers.zomato.com/api/v2.1/locations?query=${cityname}`;
 
     superagent.get(url)
@@ -83,30 +83,6 @@ function handleLocation(req, res) {
         })
 }
 
-/*
-function Cuisines(data) {
-    this.cuisine_id = data.cuisine_id;
-    this.cuisine_name = data.cuisine_name; 
-
-}
-
-app.get('/cuisine', searchCuisines)
-function searchCuisines(request, response) {
-    const lat = request.query.latitude;
-    const lon = request.query.longitude;
-    const url = `http://developers.zomato.com/api/v2.1/cuisines?lat=${lat}&lon=${lon}`;
-
-    superagent.get(url)
-    .then(result => {
-        console.log(result.body);
-        let allCuisines = result.body.cuisines.map(cuisineType => {
-            return new Cuisines(cuisineType);
-        })
-        response.render('views/results', { cuisinesList: allCuisines})
-    })
-    .catch(err => console.error(err));
-}
-*/
 
 client.connect()
     .then(() => {

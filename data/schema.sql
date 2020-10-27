@@ -7,6 +7,5 @@ city_id VARCHAR(255),
 entity_id VARCHAR (255),
 latitude DECIMAL,
 longitude DECIMAL,
-name VARCHAR (255),
- NUMERIC
+name VARCHAR (255)
 );
