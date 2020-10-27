@@ -15,16 +15,13 @@ const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.set('view engine', 'ejs'); 
+app.set('view engine', 'ejs');
 
 app.get('/', (request, response) => {
     response.send('my homepage');
 });
 
-
-// http://localhost:3001/location?
-app.post('/location', handleLocation);
-
+app.get('/location', handleLocation);
 // the table should include the descriptions users want to favorite.. so city-name, restaurant, reviews, etc.
 function Location(data) {
     this.latitude = data.latitude;
@@ -35,65 +32,58 @@ function Location(data) {
     //this.name = info.restaurants.name;
     //this.price_range = info.price_range;
 }
-
-function handleLocation (req, res){
-    const cityname = req.body.city_name;
-    const url = `https://developers.zomato.com/api/v2.1/locations?query=${cityname}`;
-
-    superagent.get(url)
-    .set('user-key', ZOMATOAPI)
-    .then(cityStuff => {
-        const cityData = cityStuff.body.location_suggestions[0];
-        console.log(cityStuff.body);
-        //let sortCity = cityData.map (cityObj => {
-           const createCity = new Location(cityData);
-          //  return createCity;
-
-          // make request to geocode api
-          
-       // })
-        res.render('../views/results', {cityInstance : sortCity});
-    })
-    .catch( error => {
-        console.error('connection error', error);
-    })
-}
-
 // purpose, what/how invoked, what returned
 // arguments (#): 2 lat long, 1 popularity 
 // argument types: numbers, 
 // return: data: popularity ratings location price range, photo
-function RestaurantDetail(data) {
-    this.phots_url = data.restaurant.photos_url;
-    this.currency = data.nearby_restaurants.currency;
-    this.rating_text = data.user_rating.rating_text;
+function restaurantDetail(data) {
+    this.photos_url = data.restaurant.photos_url;
+    this.currency = data.restaurant.currency;
+    this.rating_text = data.restaurant.user_rating.rating_text;
     this.address = data.restaurant.location.address;
-    //this.popularity = data.popularity.popularity;
+    this.cuisine = data.restaurant.cuisines;
+    this.average_cost_for_two = data.restaurant.average_cost_for_two;
 }
 
-app.get('/geocode', searchGeoCode)
+function handleLocation(req, res) {
+    const cityname = req.query.city_name;
+    const url = `https://developers.zomato.com/api/v2.1/locations?query=${cityname}`;
 
-function searchGeoCode(req, res) {
-    const latitude = request.query.latitude;
-    const longitude = request.query.longitude;
-    const url = `https://developers.zomato.com/api/v2.1/geocode?lat=${latitude}&long=${longitude}`
-    
     superagent.get(url)
         .set('user-key', ZOMATOAPI)
-        .then(response => {
-            const geoStuff = response.nearby_restaurants;
-            console.log(response.nearby_restaurants);
-            let geoSuggestions = geoStuff.map(restaurantArr => {
-                const sortRest = new RestaurantDetail(restaurantArr);
-                return sortRest;
-            })
-            res.render('../views/results', {  popularDetails: geoSuggestions });
+        .then(cityStuff => {
+            const cityData = cityStuff.body.location_suggestions[0];
+            console.log(cityStuff.body);
+            //let sortCity = cityData.map (cityObj => {
+            const createCity = new Location(cityData);
+            //  return createCity;
+            const geoCodeURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${createCity.latitude}&long=${createCity.longitude}`
+
+            superagent.get(geoCodeURL)
+                .set('user-key', ZOMATOAPI)
+                .then(restaurantStuff => {
+                    const geoData = restaurantStuff.body.nearby_restaurants;
+                    console.log(geoData);
+                    let geoSuggestions = geoData.map(restaurantArr => {
+                        return new restaurantDetail(restaurantArr);
+                    })
+                    // superagent to separate restaurant by cuisine type
+
+                    res.render('../views/results', { popularDetails: geoSuggestions });
+                })
+                .catch(error => {
+                    console.error('connection error', error);
+                    // make request to geocode api
+                })
+            // })
+            //res.render('../views/results', { cityInstance: sortCity });
         })
         .catch(error => {
             console.error('connection error', error);
         })
 }
 
+/*
 function Cuisines(data) {
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
@@ -112,19 +102,19 @@ function searchCuisines(request, response) {
         let allCuisines = result.body.cuisines.map(cuisineType => {
             return new Cuisines(cuisineType);
         })
-        response.render('views/results', { cuisineList: allCuisines})
+        response.render('views/results', { cuisinesList: allCuisines})
     })
     .catch(err => console.error(err));
 }
+*/
 
-
-client.connect() 
-.then(() => { 
-app.listen(PORT, () => {
-    console.log(`server is up on ${PORT}`);
-});
-})
-.catch( error => {
-    console.error('connection error', error);
-}) 
+client.connect()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`server is up on ${PORT}`);
+        });
+    })
+    .catch(error => {
+        console.error('connection error', error);
+    })
 
