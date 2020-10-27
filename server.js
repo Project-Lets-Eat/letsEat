@@ -85,6 +85,8 @@ function handleLocation (req, res){
 
 
 
+
+
 function Cuisines(data) {
     this.cuisine_id = data.cuisine.cuisine_id;
     this.cuisine_name = data.cuisine.cuisine_name; 
@@ -106,6 +108,8 @@ function searchCuisines(request, response) {
     })
     .catch(err => console.error(err));
 }
+
+
 
 
 
