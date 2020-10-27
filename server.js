@@ -31,6 +31,8 @@ function Location(data) {
     this.city_name = data.city_name;
     this.city_id = data.city_id;
     this.entity_id = data.entity_id;
+    //this.name = info.restaurants.name;
+    //this.price_range = info.price_range;
 }
 
 function handleLocation (req, res){
@@ -40,11 +42,14 @@ function handleLocation (req, res){
     superagent.get(url)
     .set('user-key', ZOMATOAPI)
     .then(cityStuff => {
-        const cityData = cityStuff.body.location_suggestions;
+        const cityData = cityStuff.body.location_suggestions[0];
         console.log(cityStuff.body);
-        let sortCity = cityData.map (cityObj => {
-            const createCity = new Location(cityObj);
-            return createCity;
+        //let sortCity = cityData.map (cityObj => {
+           const createCity = new Location(cityData);
+          //  return createCity;
+
+          // make request to geocode api
+          
         })
         res.render('../views/results', {cityInstance : sortCity});
     })
