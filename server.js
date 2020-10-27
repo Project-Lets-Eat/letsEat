@@ -64,6 +64,9 @@ function handleLocation (req, res){
 
 
 
+function Cuisisnes(data) {
+
+
 
 
 
@@ -93,8 +96,13 @@ function handleLocation (req, res){
 
 
 function Cuisines(data) {
+4fe09e6cde55ae218fada631242f7b154216c420
+    this.cuisine_id = data.cuisine_id;
+    this.cuisine_name = data.cuisine_name; 
+
     this.cuisine_id = data.cuisine.cuisine_id;
     this.cuisine_name = data.cuisine.cuisine_name; 
+
 }
 
 app.get('/cuisine', searchCuisines)
