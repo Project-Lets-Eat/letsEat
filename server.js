@@ -31,6 +31,8 @@ function Location(data) {
     this.city_name = data.city_name;
     this.city_id = data.city_id;
     this.entity_id = data.entity_id;
+    //this.name = info.restaurants.name;
+    //this.price_range = info.price_range;
 }
 
 function handleLocation (req, res){
@@ -40,11 +42,14 @@ function handleLocation (req, res){
     superagent.get(url)
     .set('user-key', ZOMATOAPI)
     .then(cityStuff => {
-        const cityData = cityStuff.body.location_suggestions;
+        const cityData = cityStuff.body.location_suggestions[0];
         console.log(cityStuff.body);
-        let sortCity = cityData.map (cityObj => {
-            const createCity = new Location(cityObj);
-            return createCity;
+        //let sortCity = cityData.map (cityObj => {
+           const createCity = new Location(cityData);
+          //  return createCity;
+
+          // make request to geocode api
+          
         })
         res.render('../views/results', {cityInstance : sortCity});
     })
@@ -58,9 +63,11 @@ function handleLocation (req, res){
 
 
 
-<<<<<<< HEAD
+
 function Cuisisnes(data) {
-=======
+
+
+
 
 
 
@@ -89,24 +96,33 @@ function Cuisisnes(data) {
 
 
 function Cuisines(data) {
->>>>>>> 4fe09e6cde55ae218fada631242f7b154216c420
+4fe09e6cde55ae218fada631242f7b154216c420
     this.cuisine_id = data.cuisine_id;
     this.cuisine_name = data.cuisine_name; 
+
+    this.cuisine_id = data.cuisine.cuisine_id;
+    this.cuisine_name = data.cuisine.cuisine_name; 
+
 }
 
 app.get('/cuisine', searchCuisines)
 function searchCuisines(request, response) {
-    const city_id = request.query.city_id;
     const lat = request.query.latitude;
     const lon = request.query.longitude;
-    const url = `http://developers.zomato.com/api/v2.1/cuisines?city_id=/location`;
+    const url = `http://developers.zomato.com/api/v2.1/cuisines?lat=${lat}&lon=${lon}`;
 
     superagent.get(url)
     .then(result => {
-        response.render('views/results', { cuisineList: data.rows})
+        console.log(result.body);
+        let allCuisines = result.body.cuisines.map(cuisineType => {
+            return new Cuisines(cuisineType);
+        })
+        response.render('views/results', { cuisineList: allCuisines})
     })
     .catch(err => console.error(err));
 }
+
+
 
 
 
