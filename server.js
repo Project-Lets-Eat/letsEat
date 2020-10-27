@@ -68,21 +68,24 @@ function Location(data) {
 
 
 
-function Cuisisnes(data) {
-    this.cuisine_id = data.cuisine_id;
-    this.cuisine_name = data.cuisine_name; 
+function Cuisines(data) {
+    this.cuisine_id = data.cuisine.cuisine_id;
+    this.cuisine_name = data.cuisine.cuisine_name; 
 }
 
 app.get('/cuisine', searchCuisines)
 function searchCuisines(request, response) {
-    const city_id = request.query.city_id;
     const lat = request.query.latitude;
     const lon = request.query.longitude;
-    const url = `http://developers.zomato.com/api/v2.1/cuisines?city_id=/location`;
+    const url = `http://developers.zomato.com/api/v2.1/cuisines?lat=${lat}&lon=${lon}`;
 
     superagent.get(url)
     .then(result => {
-        response.render('views/results', { cuisineList: data.rows})
+        console.log(result.body);
+        let allCuisines = result.body.cuisines.map(cuisineType => {
+            return new Cuisines(cuisineType);
+        })
+        response.render('views/results', { cuisineList: allCuisines})
     })
     .catch(err => console.error(err));
 }
