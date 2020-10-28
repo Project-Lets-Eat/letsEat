@@ -11,6 +11,9 @@ const ZOMATOAPI = process.env.ZOMATO_API_KEY;
 const cors = require('cors');
 const { response } = require('express');
 const methodOverride = require('method-override');
+
+// const { delete } = require('superagent');
+
 const client = new pg.Client(process.env.DATABASE_URL);
 
 app.use(methodOverride('_method'));
