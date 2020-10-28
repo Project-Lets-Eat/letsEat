@@ -11,7 +11,6 @@ const ZOMATOAPI = process.env.ZOMATO_API_KEY;
 const cors = require('cors');
 const { response } = require('express');
 const methodOverride = require('method-override');
-const { delete } = require('superagent');
 const client = new pg.Client(process.env.DATABASE_URL);
 
 app.use(methodOverride('_method'));
@@ -25,7 +24,7 @@ app.post('/viewRestaurant', viewSingleRestaurant); // check this
 //app.post('/viewRestaurant', viewRestaurantDetailsHomePage);
 app.post('/location', handleLocation);
 app.post('/save', save);
-app.delete('/delete/:task_id', deleteTask);
+app.delete('/delete/:id', deleteTask);
 
 
 // the table should include the descriptions users want to favorite.. so city-name, restaurant, reviews, etc.
@@ -70,13 +69,13 @@ function save(req, res) {
     .then(res.redirect('/'));
 }
 
-function delete(req, res) {
+function deleteTask(req, res) {
     let SQL = `DELETE FROM restaurant WHERE id=$1;`;
-
-    let VALUES = [req.params.id]
-    client.query(SQL, VALUES)
+    console.log(req.params.id)
+    let id = [req.params.id]
+    client.query(SQL, id)
         .then(res.redirect('/'));
-    }
+}
 
 function handleLocation(req, res) {
     const cityname = req.body.city_name;

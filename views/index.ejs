@@ -30,6 +30,10 @@
                 <p>Cuisine: <%= favoriteRestaurant.cuisine %></p>
                 <p>Cost for two: <%= favoriteRestaurant.average_cost_for_two %></p>
                 <img src="<%= favoriteRestaurant.featured_image %>"/>
+                <form action="/delete/<%= favoriteRestaurant.id %>?_method=DELETE" method="post">
+                    <input id='deleting' value='Delete' type="submit"> </input>
+                </form>
+               
             </div>
         <% }) %>
     </body>
