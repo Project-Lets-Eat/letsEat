@@ -15,13 +15,14 @@
 
     <h1> <%= restaurant.name %></h1>
     <h1> <%= restaurant.city_name %></h1>
-    <p> <%= restaurant.address %></p>
-    <p> <%= restaurant.cuisine %></p>
-    <p> <%= restaurant.rating_text %></p>
+    <p> Address: <%= restaurant.address %></p>
+    <p> Cuisine: <%= restaurant.cuisine %></p>
+    <p> Rating: <%= restaurant.rating_text %></p>
+    <p> Price Range(1-5): <%= restaurant.price_range %></p>
+    <p> Cost for two: <%= restaurant.average_cost_for_two %></p>
     <img src='<%= restaurant.featured_image %>' alt=''>
-    <p> <%= restaurant.price_range %></p>
-    <p> <%= restaurant.average_cost_for_two %></p>
-
+    
+    
     <form id='saving' action="/save" method="post">
     <input type="hidden" name="name" value="<%= restaurant.name %>">
     <input type="hidden" name="city_name" value="<%= restaurant.city_name %>">
