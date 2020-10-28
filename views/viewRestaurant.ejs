@@ -34,9 +34,18 @@
     <input type="hidden" name="average_cost_for_two" value="<%= restaurant.average_cost_for_two %>">
     <input type="submit" value="Save!">
     </form>
-    
-
-
+    <% if(restaurant.id){ %>
+    <form id= 'updating' action="/update/<%= restaurant.id %>?_method=PUT" method="post">
+        <input type="text" name="name" value="<%= restaurant.name %>">
+        <input type="text" name="address" value="<%= restaurant.address %>">
+        <input type="text" name="rating_text" value="<%= restaurant.rating_text %>">
+        <input type="text" name="featured_image" value="<%= restaurant.featured_image %>">
+        <input type="text" name="price_range" value="<%= restaurant.price_range %>">
+        <input type="text" name="cuisine" value="<%= restaurant.cuisine %>">
+        <input type="text" name="average_cost_for_two" value="<%= restaurant.average_cost_for_two %>">
+        <input type="submit" value="Update!">
+    </form>
+    <% } %>
 </body>
 
 </html>

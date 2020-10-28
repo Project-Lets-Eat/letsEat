@@ -25,8 +25,8 @@ app.post('/viewRestaurant', viewSingleRestaurant); // check this
 app.post('/location', handleLocation);
 app.post('/save', save);
 app.delete('/delete/:id', deleteTask);
-
-
+app.put('/update/:id', updateTask);
+app.get('/viewRestaurant', viewSingleRestaurant);
 // the table should include the descriptions users want to favorite.. so city-name, restaurant, reviews, etc.
 function Location(data) {
     this.latitude = data.latitude;
@@ -41,7 +41,6 @@ function restaurantDetail(data) {
     this.featured_image = data.restaurant.featured_image;
     this.price_range = data.restaurant.price_range;
     this.rating_text = data.restaurant.user_rating.rating_text;// check object
-    console.log(this.rating_text);
     this.address = data.restaurant.location.address;
     this.cuisine = data.restaurant.cuisines;
     this.average_cost_for_two = data.restaurant.average_cost_for_two;
@@ -59,6 +58,9 @@ function renderIndex(_request, response) {
     );
 }
 
+
+
+
 function save(req, res) {
     let SQL = `INSERT INTO restaurant (name, address, rating_text, featured_image, price_range, cuisine, average_cost_for_two)
     VALUES ($1, $2, $3, $4, $5, $6, $7)`;
@@ -68,6 +70,17 @@ function save(req, res) {
     client.query(SQL, VALUES)
     .then(res.redirect('/'));
 }
+
+function updateTask (req, res) {
+    console.log('life', req.body);
+    let {name, address, rating_text, featured_image, price_range, cuisine, average_cost_for_two} = req.body;
+    let restaurantUpdate = 'UPDATE restaurant SET name=$1, address=$2, rating_text=$3, featured_image=$4, price_range=$5, cuisine=$6, average_cost_for_two=$7 WHERE id=$8';
+    let restaurantArr = [name, address, rating_text, featured_image, price_range, cuisine, average_cost_for_two, req.params.id];
+
+    client.query(restaurantUpdate, restaurantArr)
+    .then(res.redirect(`/`))
+}
+
 
 function deleteTask(req, res) {
     let SQL = `DELETE FROM restaurant WHERE id=$1;`;
@@ -129,7 +142,23 @@ function handleLocation(req, res) {
 }
 */
 function viewSingleRestaurant (req, res) {
+// query db - sql str, does it have req.body.restaurantID client.query-- select * from restaurant where name= req.body.restaurantName
+//.then... if results.rows > 0
+// res = results.rows[0] 
+// else.... vvv
 
+const sql= `SELECT * FROM restaurant WHERE name=$1;`;
+console.log(req.query);
+const values = [req.query.restaurantName];
+client.query(sql, values)
+
+.then(results => {
+    if (results.rows.length > 0){
+        console.log('hello there');
+    res.render('viewRestaurant', {restaurant : results.rows[0]});
+    }
+    else {
+        console.log('goodbye');
     const restaurantURL = `https://developers.zomato.com/api/v2.1/restaurant?res_id=${req.body.restaurantID}`
 
     superagent.get(restaurantURL)
@@ -143,14 +172,14 @@ function viewSingleRestaurant (req, res) {
         singleRestaurantObj.price_range = singleData.body.price_range;
         singleRestaurantObj.rating_text = singleData.body.user_rating.rating_text;
         singleRestaurantObj.average_cost_for_two = singleData.body.average_cost_for_two;
-        console.log(singleRestaurantObj);
         res.render('viewRestaurant', {restaurant: singleRestaurantObj});
     })
+}
+}) 
     .catch(error => {
         console.error('connection error', error);
     })
 }
-
 
 client.connect()
     .then(() => {
@@ -161,4 +190,3 @@ client.connect()
     .catch(error => {
         console.error('connection error', error);
     })
-
