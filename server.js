@@ -88,12 +88,6 @@ function handleLocation(req, res) {
         })
 }
 
-<<<<<<< HEAD
-function Cuisines(data) {
-    this.cuisine_id = data.cuisine_id;
-    this.cuisine_name = data.cuisine_name; 
-
-=======
 // restaurant details function that inserts data into SQL, use key from this fcn and insert as xxx.forEach in index.ejs, similar to popularDetails for results.ejs
 /*function viewRestaurantDetailsHomePage (req, res) {
     client.query('SELECT * FROM restaurant')
@@ -103,7 +97,6 @@ function Cuisines(data) {
     .catch(error => {
         console.error('connection error', error);
     })
->>>>>>> d8c8eff5ad7d38a4c9d6d2f415d4e7ea3888a3e5
 }
 */
 function viewSingleRestaurant (req, res) {
