@@ -1,4 +1,85 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Results</title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/base.css">
+</head>
+<body>
+    <section>
+        <h2>List by Restaurant</h2>
+        <ul>
+            <li>
+            <% popularDetails.forEach(restaurant => { %>
+                <p> <%= restaurant.name %> - <%= restaurant.city_name %> </p>
+                <p> <%= restaurant.address %></p>
+                <img src='<%= restaurant.featured_image %>' alt= ''>
+                <form action="/viewRestaurant" method="POST">
+                    <fieldset>
+                        <input type="hidden" name="restaurantID" value ="<%= restaurant.id %>" required>
+                        <input type="hidden" name="restaurantName" value ="<%= restaurant.name %>" required>
+                        <input type="hidden" name="restaurantAddress" value ="<%= restaurant.address %>" required>
+                        <input type="hidden" name="restaurantCityName" value ="<%= restaurant.city_name %>" required>
+                        <input type="hidden" name="restaurantPhoto" value ="<%= restaurant.featured_image %>" required>
+                        <button type="submit"> View Details</button>
+                    </fieldset>
+                </form>
+            <% }) %>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>List by Price</h2>
+        <ul>
+            <li>
+            <% popularDetails.forEach(restaurant => { %>
+                <p><%= restaurant.name %></p>
+                <img src='<%= restaurant.featured_image %>' alt= ''>
+                <p> Price (1-5): <%= restaurant.price_range %> </p>
+                <p>Avg. Cost For Two: $<%= restaurant.average_cost_for_two %></p>
+                <form action="/viewRestaurant" method="POST">
+                    <fieldset>
+                        <input type="hidden" name="restaurantID" value ="<%= restaurant.res_id %>" required>
+                        <input type="hidden" name="restaurantName" value ="<%= restaurant.name %>" required>
+                        <input type="hidden" name="restaurantPhoto" value ="<%= restaurant.featured_image %>" required>
+                        <input type="hidden" name="restaurantPriceRange" value ="<%= restaurant.price_range %>" required>
+                        <input type="hidden" name="restaurantAverageCost" value ="<%= restaurant.average_cost_for_two %>" required>
+                        <button type="submit"> View Details</button>
+                    </fieldset>
+                </form>
+            <% }) %>
+        </ul>
+            </li>
+        </section>
+    </section>
+    <section>
+        <h2>List by Cuisine</h2>
+        <ul>
+            <li>
+            <% popularDetails.forEach(restaurant => { %>
+                <p><%= restaurant.name %></p>
+                <p> <%= restaurant.address %></p>
+                <img src='<%= restaurant.featured_image %>' alt= ''>
+                <p><%= restaurant.cuisine %></p>
+                <form action="/viewRestaurant" method="POST">
+                    <fieldset>
+                        <input type="hidden" name="restaurantID" value ="<%= restaurant.res_id %>" required>
+                        <input type="hidden" name="restaurantAddress" value ="<%= restaurant.address %>" required>
+                        <input type="hidden" name="restaurantPhoto" value ="<%= restaurant.featured_image %>" required>
+                        <input type="hidden" name="restaurantCuisine" value ="<%= restaurant.cuisine %>" required>
+                        <button type="submit"> View Details</button>
+                    </fieldset>
+                </form>
+            <% }) %>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
 
 
 
