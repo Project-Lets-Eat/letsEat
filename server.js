@@ -11,7 +11,6 @@ const ZOMATOAPI = process.env.ZOMATO_API_KEY;
 const cors = require('cors');
 const { response } = require('express');
 const methodOverride = require('method-override');
-const { delete } = require('superagent');
 const client = new pg.Client(process.env.DATABASE_URL);
 
 app.use(methodOverride('_method'));
@@ -25,6 +24,7 @@ app.post('/viewRestaurant', viewSingleRestaurant); // check this
 //app.post('/viewRestaurant', viewRestaurantDetailsHomePage);
 app.post('/location', handleLocation);
 app.post('/save', save);
+
 // app.delete('/delete/:task_id', deleteTask);
 
 
@@ -59,6 +59,9 @@ function renderIndex(_request, response) {
         }
     );
 }
+
+
+
 
 function save(req, res) {
     let SQL = `INSERT INTO restaurant (name, address, rating_text, featured_image, price_range, cuisine, average_cost_for_two)
@@ -159,6 +162,7 @@ function viewSingleRestaurant (req, res) {
         console.error('connection error', error);
     })
 }
+
 
 
 client.connect()
