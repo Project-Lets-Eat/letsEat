@@ -13,7 +13,7 @@ name VARCHAR (255)
 name VARCHAR (255),
 address VARCHAR (255),
 rating_text TEXT,
-photos_url VARCHAR (255),
+featured_image VARCHAR (255),
 price_range VARCHAR (255),
 cuisine VARCHAR (255),
 average_cost_for_two VARCHAR (255)

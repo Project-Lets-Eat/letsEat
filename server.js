@@ -11,21 +11,19 @@ const ZOMATOAPI = process.env.ZOMATO_API_KEY;
 const cors = require('cors');
 const { response } = require('express');
 const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
 const client = new pg.Client(process.env.DATABASE_URL);
+
+app.use(methodOverride('_method'));
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.set('view engine', 'ejs');
 
-app.get('/', (request, response) => {
-    response.render('index');
-});
+app.get('/', renderIndex);
 app.post('/viewRestaurant', viewSingleRestaurant); // check this
 //app.post('/viewRestaurant', viewRestaurantDetailsHomePage);
 app.post('/location', handleLocation);
-
-
+app.post('/save', save);
 
 // the table should include the descriptions users want to favorite.. so city-name, restaurant, reviews, etc.
 function Location(data) {
@@ -41,11 +39,32 @@ function restaurantDetail(data) {
     this.featured_image = data.restaurant.featured_image;
     this.price_range = data.restaurant.price_range;
     this.rating_text = data.restaurant.user_rating.rating_text;// check object
+    console.log(this.rating_text);
     this.address = data.restaurant.location.address;
     this.cuisine = data.restaurant.cuisines;
     this.average_cost_for_two = data.restaurant.average_cost_for_two;
     this.name = data.restaurant.name;
     this.id = data.restaurant.id;
+}
+
+function renderIndex(_request, response) {
+    let SQL = "SELECT * FROM restaurant";
+    
+    client.query(SQL)
+    .then ( queryResponse => {
+            response.render('index', { favoriteRestaurants: queryResponse.rows });
+        }
+    );
+}
+
+function save(req, res) {
+    let SQL = `INSERT INTO restaurant (name, address, rating_text, featured_image, price_range, cuisine, average_cost_for_two)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+
+    let VALUES = [req.body.name, req.body.address, req.body.rating_text, req.body.featured_image, req.body.price_range, req.body.cuisine, req.body.average_cost_for_two]
+
+    client.query(SQL, VALUES)
+    .then(res.redirect('/'));
 }
 
 function handleLocation(req, res) {
