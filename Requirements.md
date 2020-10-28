@@ -36,10 +36,13 @@ It promotes the relationship between businesses and customers. This app will pro
 
 *What will your MVP functionality be?*
 Our MVP will provide the ability for the user to search by location. 
-Our MVP will also illustrate clear-cut sections representing different buckets of restaurant information.
-The MVP will include ability see multiple descriptions of restaurant reviews, categories, daily menu, and results.
+Our MVP will also illustrate sections representing different buckets of restaurant information.
+The MVP will include ability see multiple descriptions of restaurant information including cuisine type and cost.
 
 *What are your stretch goals?*
 - Get images to pair with each restaurant that is listed after the user searches.
 - Background loop of a restaurant operating 
 - Create search by cuisine type to add the main page.
+
+![DOM](images/91D0EF66-99F9-41C9-B36A-1C13CA6F9C76_1_105_c.jpeg)
+![WireFrame](images/F2DC1C9B-3820-46AF-91BC-FF4B79FF2C48.jpeg)
