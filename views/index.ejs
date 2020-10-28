@@ -15,7 +15,7 @@
             <fieldset>
                 <label for='location'> Location</label>
                     <input type='text' placeholder=' your location' name='city_name' required>
-                    <input type='submit' value='Find A Meal!'' required>
+                    <input type='submit' value='Find A Meal!' required>
             </fieldset>
         </form>
         <section>
@@ -30,6 +30,10 @@
                 <p>Cuisine: <%= favoriteRestaurant.cuisine %></p>
                 <p>Cost for two: <%= favoriteRestaurant.average_cost_for_two %></p>
                 <img src="<%= favoriteRestaurant.featured_image %>"/>
+                <form action="/delete/<%= favoriteRestaurant.id %>?_method=DELETE" method="post">
+                    <input id='deleting' value='Delete' type="submit"> </input>
+                </form>
+               
             </div>
         <% }) %>
     </body>
