@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Project Let's Eat </title>
+        <link rel="stylesheet" href="/styles/reset.css">
+        <link rel="stylesheet" href="/styles/base.css">
+        <link rel="stylesheet" href="/styles/layout.css">
+        <link rel="stylesheet" href="/styles/base.css">
+        </head>
+<body>
+ 
+    <h1> <%= restaurant.name %></h1>
+    <h1> <%= restaurant.city_name %></h1>
+    <p> <%= restaurant.address %></p>
+    <p> <%= restaurant.cuisine %></p>
+    <p> <%= restaurant.rating_text %></p>
+    <img src='<%= restaurant.featured_image %>' alt=''>
+    <p> <%= restaurant.price_range %></p>
+    <p> <%= restaurant.average_cost_for_two %></p>
+    
+<!-- here we will put the save restaurant button and the delete button (delete may move to home page later)
+<form id= 'updating' action="/book/<%= books.id %>?_method=PUT" method="post">
+<input type="text" name="title" value="<%= books.title %>">
+<input type="text" name="author" value="<%= books.author %>">
+<input type="text" name="image_url" value="<%= books.image_url %>">
+<input type="text" name="isbn" value="<%= books.isbn %>">
+<input type="text" name="description" value="<%= books.description %>">
+<input type="submit" value="Update!">
+</form>
+<form action="/book/<%= books.id %>?_method=DELETE" method="post">
+    <input id='deleting' value='Delete' type="submit">
+</form>-->
+
+</body>
+</html>
