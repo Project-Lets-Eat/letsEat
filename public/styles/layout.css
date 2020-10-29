@@ -1,0 +1,14 @@
+h2 {
+    text-align: center;
+}
+
+div {
+    width: min-content;
+    text-align: center;
+   margin: auto;
+}
+
+img {
+    height: 50vw;
+    width: 50vw;
+}
