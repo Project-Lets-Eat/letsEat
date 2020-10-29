@@ -7,8 +7,13 @@
     overflow: hidden;
     white-space: nowrap;
     border-right: 3px solid #000;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
+
 }
-/* http://www.samsolomonprabu.com animation effects via verrkonet */
+/* http://www.samsolomonprabu.com animation effects via Verrkonet */
 
 @keyframes typing-text {
     from {
@@ -30,6 +35,10 @@
 #greeting {
     font-size: 45px;
     text-shadow: #5A5766;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
 }
     
 div {
@@ -119,17 +128,20 @@ form {
 .salad {
     color: #95EFAE;
     float: right;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
 }
 
 .silver {
     color: #95EFAE;
-    @keyframes fadeIn {
-   0% {opacity: 0;}
-   100% {opacity: 1;}
+	font-size: 40px;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
 } 
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
 
 #container {
     background-color: #5a5766;;
@@ -139,7 +151,7 @@ form {
     font-family: 'Poppins', sans-serif;
     padding: 2em;
     margin-top: 1em;
-    width: 40em;
+    width: 55em;
 }
 
 #page1 {
@@ -151,12 +163,16 @@ form {
 }
 
 img {
-width: 350px;
-height: 200px;
+width: 500px;
 }
 
 footer {
-   margin: 30px 30px;
+   margin: 30px 30px 30px 30px;
    /* padding: 10px 10px 10px 10px; */
    width: 100%;
+	font-size: 20px;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
 }
