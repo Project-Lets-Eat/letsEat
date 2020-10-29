@@ -1,0 +1,34 @@
+  h1 {  background-color: #5a5766;;
+    color: #edffec;
+}
+    
+div {
+    width: min-content;
+    text-align: center;
+   margin: auto;
+
+}
+form {
+    color:  #9792E3;
+}
+}
+#container {
+       background-color: #5a5766;;
+    color: #9792E3;
+    border: 1px dashed black;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+#page1 {
+    background-color: #5a5766;;
+    color: #95EFAE;
+    margin: auto;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+img {
+width: 200px;
+height: 150px;
+}

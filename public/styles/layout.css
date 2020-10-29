@@ -1,14 +1,8 @@
+h1 {
+    font-family: 'Acme', sans-serif;
+}
 h2 {
     text-align: center;
+    font-family: 'Acme', sans-serif;
 }
 
-div {
-    width: min-content;
-    text-align: center;
-   margin: auto;
-}
-
-img {
-    height: 50vw;
-    width: 50vw;
-}

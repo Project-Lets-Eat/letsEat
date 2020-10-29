@@ -8,21 +8,42 @@
     <link rel="stylesheet" href="/styles/base.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/homepage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/94c005aa00.js" crossorigin="anonymous"></script>
     </head>
+    <style>
+<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+    </style>
+    </head>
+    
+    <body id="page1">
+        <h1></h1>
+    
+        <div class="flex-container">
+            <i class="fas fa-seedling fa-9x"></i>
     <body>
-        <h1> Who's Hungry?</h1>
+        <h1>Let's Eat!</h1>
+        <div class="container">
+            <div class="button-wrap">
         <form action='/location' method='post'>
             <fieldset>
                 <label for='location'> Location</label>
                     <input type='text' placeholder=' your location' name='city_name' required>
                     <input type='submit' value='Find A Meal!' required>
             </fieldset>
+            <i class="fas fa-utensils fa-9x"></i>
         </form>
+        </div>
+        </div>
         <section>
         </section>
+        <html>
+        
+        
 
         <% favoriteRestaurants.forEach(favoriteRestaurant => { %>
-            <div>
+            <div id="container">
                 <h1><%= favoriteRestaurant.name %></h1>
                 <p>Address: <%= favoriteRestaurant.address %></p>
                 <p>Rating: <%= favoriteRestaurant.rating_text %></p>
