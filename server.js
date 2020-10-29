@@ -53,6 +53,7 @@ function renderIndex(_request, response) {
     
     client.query(SQL)
     .then ( queryResponse => {
+        console.log(queryResponse);
             response.render('index', { favoriteRestaurants: queryResponse.rows });
         }
     );
