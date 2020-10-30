@@ -38,7 +38,7 @@ function Location(data) {
 }
 
 function restaurantDetail(data) {
-    this.featured_image = data.restaurant.featured_image;
+    this.featured_image = data.restaurant.featured_image ? data.restaurant.featured_image :'images/foodie.jpg'
     this.price_range = data.restaurant.price_range;
     this.rating_text = data.restaurant.user_rating.rating_text;// check object
     this.address = data.restaurant.location.address;
