@@ -6,24 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Project Let's Eat </title>
     <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/base.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/singleView.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
+    <header class='header'>
+        <nav class='headerLeft'> Project Let's Eat  <a class='link' href='/'> Home </a>
+        </nav>
+    </header>
+    <div class='restaurantName'>
     <h1> <%= restaurant.name %></h1>
+    </div>
+    <div class='restaurantDesc'>
     <h1> <%= restaurant.city_name %></h1>
     <p> Address: <%= restaurant.address %></p>
     <p> Cuisine: <%= restaurant.cuisine %></p>
     <p> Rating: <%= restaurant.rating_text %></p>
     <p> Price Range(1-5): <%= restaurant.price_range %></p>
-    <p> Cost for two: <%= restaurant.average_cost_for_two %></p>
+    <p> Cost for two: $<%= restaurant.average_cost_for_two %></p>
+    </div>
+    <div>
     <img src='<%= restaurant.featured_image %>' alt=''>
+    </div>
     
-    
-    <form id='saving' action="/save" method="post">
+    <form  action="/save" method="post">
     <input type="hidden" name="name" value="<%= restaurant.name %>">
     <input type="hidden" name="city_name" value="<%= restaurant.city_name %>">
     <input type="hidden" name="address" value="<%= restaurant.address %>">
@@ -32,20 +40,26 @@
     <input type="hidden" name="featured_image" value="<%= restaurant.featured_image %>">
     <input type="hidden" name="price_range" value="<%= restaurant.price_range %>">
     <input type="hidden" name="average_cost_for_two" value="<%= restaurant.average_cost_for_two %>">
-    <input type="submit" value="Save!">
+    <div class='saveButton'>
+    <input class='saving' type="submit" value="Save!">
+    </div>
     </form>
     <% if(restaurant.id){ %>
-    <form id= 'updating' action="/update/<%= restaurant.id %>?_method=PUT" method="post">
-        <input type="text" name="name" value="<%= restaurant.name %>">
-        <input type="text" name="address" value="<%= restaurant.address %>">
-        <input type="text" name="rating_text" value="<%= restaurant.rating_text %>">
-        <input type="text" name="featured_image" value="<%= restaurant.featured_image %>">
-        <input type="text" name="price_range" value="<%= restaurant.price_range %>">
-        <input type="text" name="cuisine" value="<%= restaurant.cuisine %>">
-        <input type="text" name="average_cost_for_two" value="<%= restaurant.average_cost_for_two %>">
-        <input type="submit" value="Update!">
+<div class='photo'>
+    <p>Update the Business:</p>
+    <form action="/update/<%= restaurant.id %>?_method=PUT" method="post">
+        Name:<input class= 'updating' type="text" name="name" value="<%= restaurant.name %>">
+        Address:<input class= 'updating' type="text" name="address" value="<%= restaurant.address %>">
+        User Rating:<input class= 'updating' type="text" name="rating_text" value="<%= restaurant.rating_text %>">
+        Change Photo:<input class= 'updating' type="text" name="featured_image" value="<%= restaurant.featured_image %>">
+        Price Range(1-5):<input class= 'updating' type="text" name="price_range" value="<%= restaurant.price_range %>">
+        Cuisine:<input class= 'updating' type="text" name="cuisine" value="<%= restaurant.cuisine %>">
+        Average Cost for Two($):<input class= 'updating' type="text" name="average_cost_for_two" value="<%= restaurant.average_cost_for_two %>">
+        <input class='updateButton' type="submit" value="Update!">
     </form>
     <% } %>
+    </div> 
+    <footer></footer>
 </body>
 
 </html>
