@@ -1,0 +1,104 @@
+h2 {
+    color: antiquewhite;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgb(119, 179, 139);
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    background-color: #5A5766;
+    padding: 50px 50px;
+    font-size: 40px;
+}
+
+.header a {
+    color: #95EFAE;
+    border-radius: 3px;
+}
+
+.header a:hover {
+    color: #EDFFEC;
+}
+.headerLeft {
+    color: #9792E3;
+    font-weight: bold;
+}
+
+.link {
+    text-decoration: none;
+    float: right;  
+}
+
+div {
+    width: min-content;
+    text-align: center;
+    margin: auto;    
+}
+
+.container {
+    position: relative;
+    width: 50%;  
+    margin-bottom: 15px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    /* background-color: rgb(179, 185, 185); */
+    background-color:  #e7f7f8;
+}
+  
+.container:hover .overlay {
+    opacity: 1;   
+}
+
+img {
+    height: 50vw;
+    width: 50vw;
+    box-shadow: 10px 10px 5px rgb(119, 179, 139);
+      
+}
+
+#Page2 {
+    /* background-image: url(https://www.archanaskitchen.com/images/archanaskitchen/1-Author/happytrioexplains-gmail.com/Pista_Ice_Cream__Homemade_Pista_Ice_Cream__3_ingredient_Pistachio_IceCream.jpg); */
+    background-color: #48435C;
+    background-size: unset;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+button {
+    background-color:  #aaf5bf;
+    color: black;
+    font-weight: bold;
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 1vw;
+}
+
+fieldset{
+    border: 0px;
+}
+footer {
+    margin: 30px 30px 30px 30px;
+    color: #95EFAE;
+    /* padding: 10px 10px 10px 10px; */
+    width: 100%;
+     font-size: 20px;
+     text-shadow: -1px 1px 0 #000,
+                   1px 1px 0 #000,
+                  1px -1px 0 #000;
+                 -1px -1px 0 #000;
+ }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Project Let's Eat </title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/homepage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/94c005aa00.js" crossorigin="anonymous"></script>
+    </head>
+    <style>
+<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+    </style>
+    </head>
+    
+    <body id="page1">
+        <header class='header'>
+            <nav class='headerLeft funcss'> Project Let's Eat <i class="fas fa-seedling fa-2x salad"></i>
+            </nav>
+        </header>
+        <div class="flex-container">
+    <body>
+        <h1 id="greeting">Let's Eat!</h1>
+        <div class="container">
+            <div class="button-wrap" >
+            <form action='/location' method='post'>
+                <fieldset>
+                    <label for='location'>
+                        <h3>Location</h3></label>
+                    <input class="text_box" type='text' placeholder=' City Name' name='city_name' required>
+                    <input id="button" type='submit' value='Explore!' required>
+                </fieldset>
+            </form>
+            </div>
+        </div>
+        <p><i class="fas fa-utensils fa-7x silver"></i></p>
+        <section>
+        </section>
+        <html>
+        
+        
+
+        <% favoriteRestaurants.forEach(favoriteRestaurant => { %>
+            <div id="container">
+                <h1><%= favoriteRestaurant.name %></h1>
+                <p>Address: <%= favoriteRestaurant.address %></p>
+                <p>Rating: <%= favoriteRestaurant.rating_text %></p>
+                <p>Price Range(1-5): <%= favoriteRestaurant.price_range %></p>
+                <p>Cuisine: <%= favoriteRestaurant.cuisine %></p>
+                <p>Cost for two: <%= favoriteRestaurant.average_cost_for_two %></p>
+                <img src="<%= favoriteRestaurant.featured_image %>"/>
+                <form action="/delete/<%= favoriteRestaurant.id %>?_method=DELETE" method="post">
+                    <input id='deleting' class='button' value='Delete' type="submit"> 
+                </form>
+                <form action="/viewRestaurant" method="GET">
+                    <input type="hidden" name="restaurantID" value ="<%= favoriteRestaurant.res_id %>" required>
+                    <input type="hidden" name="restaurantName" value ="<%= favoriteRestaurant.name %>" required>
+                    <input id='viewDetails' class='button' value='View' type="submit"> 
+                </form>
+            </div>
+        <% }) %>
+        <footer>&copy; Sowmya Dora Brendan Eating Enthusiasts</footer>
+    </body>
+</html>

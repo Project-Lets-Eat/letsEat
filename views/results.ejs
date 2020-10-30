@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Results</title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/results.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+
+<body id="Page2">
+    <header class="header">
+        <nav class='headerLeft'> Project Let's Eat  <a class='link' href='/'> Home </a> </nav>
+        <!-- <h1 style="text-align: center;">Let's Eat</h1> -->
+    </header>
+
+    <section>
+        <h2>List by Restaurant</h2>
+        <% popularDetails.forEach(restaurant => { %>
+        <div class="container">
+            <img src='<%= restaurant.featured_image %>' class="image" alt=''>
+            <div class="overlay">
+                <h3 style="font-family: 'Poppins', sans-serif; color: #45434e;"> <%= restaurant.name %> </h3>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"> <%= restaurant.address %></p>
+
+                <form action="/viewRestaurant" method="POST">
+                    <fieldset>
+                        <input type="hidden" name="restaurantID" value="<%= restaurant.id %>" required>
+                        <input type="hidden" name="restaurantName" value="<%= restaurant.name %>" required>
+                        <input type="hidden" name="restaurantAddress" value="<%= restaurant.address %>" required>
+                        <input type="hidden" name="restaurantCityName" value="<%= restaurant.city_name %>" required>
+                        <input type="hidden" name="restaurantPhoto" value="<%= restaurant.featured_image %>" required>
+                        <button type="submit"> View Details</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <% }) %>
+    </section>
+
+    <section>
+        <h2>List by Price</h2>
+        <% popularDetails.forEach(restaurant => { %>
+
+        <div class="container">
+            <img src='<%= restaurant.featured_image %>' class="image" alt=''>
+            <div class="overlay">
+                <h3 style="font-family: 'Poppins', sans-serif; color:  #45434e;"><%= restaurant.name %></h3>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"> Price (1-5):
+                    <%= restaurant.price_range %> </p>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;">Avg. Cost For Two:
+                    $<%= restaurant.average_cost_for_two %></p>
+
+                <form action="/viewRestaurant" method="POST">
+                    <fieldset>
+                        <input type="hidden" name="restaurantID" value="<%= restaurant.id %>" required>
+                        <input type="hidden" name="restaurantName" value="<%= restaurant.name %>" required>
+                        <input type="hidden" name="restaurantPriceRange" value="<%= restaurant.price_range %>" required>
+                        <input type="hidden" name="restaurantAverageCost" value="<%= restaurant.average_cost_for_two %>"
+                            required>
+                        <input type="hidden" name="restaurantPhoto" value="<%= restaurant.featured_image %>" required>
+                        <button type="submit"> View Details</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <% }) %>
+    </section>
+
+    <section>
+        <h2>List by Cuisine</h2>
+        <% popularDetails.forEach(restaurant => { %>
+
+        <div class="container">
+            <img src='<%= restaurant.featured_image %>' class="image" alt=''>
+            <div class="overlay">
+                <h3 style="font-family: 'Poppins', sans-serif; color:  #45434e;"><%= restaurant.name %></h3>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"> <%= restaurant.address %></p>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"><%= restaurant.cuisine %></p>
+
+                <form action="/viewRestaurant" method="POST">
+                    <fieldset>
+                        <input type="hidden" name="restaurantID" value="<%= restaurant.id %>" required>
+                        <input type="hidden" name="restaurantAddress" value="<%= restaurant.address %>" required>
+                        <input type="hidden" name="restaurantPhoto" value="<%= restaurant.featured_image %>" required>
+                        <input type="hidden" name="restaurantCuisine" value="<%= restaurant.cuisine %>" required>
+                        <button type="submit"> View Details</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <% }) %>
+
+    </section>
+    <footer>&copy; Sowmya Dora Brendan Eating Enthusiasts</footer>
+</body>
+
+</html>
