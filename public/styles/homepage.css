@@ -7,10 +7,6 @@
     overflow: hidden;
     white-space: nowrap;
     border-right: 3px solid #000;
-	text-shadow: -1px 1px 0 #000,
-				  1px 1px 0 #000,
-				 1px -1px 0 #000;
-				-1px -1px 0 #000;
 
 }
 /* http://www.samsolomonprabu.com animation effects via Verrkonet */
