@@ -1,0 +1,72 @@
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    text-shadow: 2px 2px 5px antiquewhite;
+    font-family: 'Poppins', sans-serif;
+}
+
+div {
+    width: min-content;
+    text-align: center;
+    margin: auto;
+    
+}
+
+.container {
+    position: relative;
+    width: 50%;  
+    margin-bottom: 15px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(179, 185, 185);
+}
+  
+.container:hover .overlay {
+    opacity: 1;   
+}
+
+img {
+    height: 50vw;
+    width: 50vw;
+    box-shadow: 10px 10px 5px rgb(32, 32, 32);
+      -moz-box-shadow: 10px 10px 5px rgb(49, 46, 46);
+      -webkit-box-shadow: 10px 10px 5px rgb(58, 56, 56);
+      -khtml-box-shadow: 10px 10px 5px rgb(71, 66, 66);
+}
+
+#Page2 {
+    /* background-image: url(https://www.archanaskitchen.com/images/archanaskitchen/1-Author/happytrioexplains-gmail.com/Pista_Ice_Cream__Homemade_Pista_Ice_Cream__3_ingredient_Pistachio_IceCream.jpg); */
+    background-color: #5A5766;
+    background-size: unset;
+}
+
+button {
+    background-color: rgb(49, 132, 153);
+    color: black;
+    font-weight: bold;
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 1vw;
+}
+
+fieldset{
+    border: 0px;
+}
