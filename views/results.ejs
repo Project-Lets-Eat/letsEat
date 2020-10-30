@@ -13,8 +13,9 @@
 </head>
 
 <body id="Page2">
-    <header>
-        <h1 style="text-align: center;">Let's Eat</h1>
+    <header class="header">
+        <nav class='headerLeft'> Project Let's Eat  <a class='link' href='/'> Home </a> </nav>
+        <!-- <h1 style="text-align: center;">Let's Eat</h1> -->
     </header>
 
     <section>
@@ -23,8 +24,8 @@
         <div class="container">
             <img src='<%= restaurant.featured_image %>' class="image" alt=''>
             <div class="overlay">
-                <h3 style="font-family: 'Poppins', sans-serif; color: rgb(128, 28, 28);"> <%= restaurant.name %> </h3>
-                <p style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);"> <%= restaurant.address %></p>
+                <h3 style="font-family: 'Poppins', sans-serif; color: #45434e;"> <%= restaurant.name %> </h3>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"> <%= restaurant.address %></p>
 
                 <form action="/viewRestaurant" method="POST">
                     <fieldset>
@@ -48,10 +49,10 @@
         <div class="container">
             <img src='<%= restaurant.featured_image %>' class="image" alt=''>
             <div class="overlay">
-                <h3 style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);"><%= restaurant.name %></h3>
-                <p style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);"> Price (1-5):
+                <h3 style="font-family: 'Poppins', sans-serif; color:  #45434e;"><%= restaurant.name %></h3>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"> Price (1-5):
                     <%= restaurant.price_range %> </p>
-                <p style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);">Avg. Cost For Two:
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;">Avg. Cost For Two:
                     $<%= restaurant.average_cost_for_two %></p>
 
                 <form action="/viewRestaurant" method="POST">
@@ -77,9 +78,9 @@
         <div class="container">
             <img src='<%= restaurant.featured_image %>' class="image" alt=''>
             <div class="overlay">
-                <h3 style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);"><%= restaurant.name %></h3>
-                <p style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);"> <%= restaurant.address %></p>
-                <p style="font-family: 'Poppins', sans-serif; color:  rgb(128, 28, 28);"><%= restaurant.cuisine %></p>
+                <h3 style="font-family: 'Poppins', sans-serif; color:  #45434e;"><%= restaurant.name %></h3>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"> <%= restaurant.address %></p>
+                <p style="font-family: 'Poppins', sans-serif; color:  #45434e;"><%= restaurant.cuisine %></p>
 
                 <form action="/viewRestaurant" method="POST">
                     <fieldset>
